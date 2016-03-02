@@ -12,7 +12,7 @@ export default Controller.extend({
       let { username, password } = this.getProperties('username', 'password');
       this.get('session').authenticate('authenticator:unfuddle', username, password).catch((reason) => {
         // this.set('errorMessage', reason.error || reason);
-        this.set('errorMessage', 'Oh no, something bad has happened!');
+        this.set('errorMessage', reason);
       });
     }
   }
