@@ -7,7 +7,7 @@ export default Base.extend({
   restore(data) {
     console.warn('restore called: ', data);
     return new RSVP.Promise((resolve, reject) => {
-      if (isEmpty(data.username) || isEmpty(data.password)) {
+      if (isEmpty(data.username) || isEmpty(data.password) || isEmpty(data.protocol) || isEmpty(data.subdomain)) {
         reject();
       }
       else {
@@ -16,11 +16,13 @@ export default Base.extend({
     });
   },
 
-  authenticate(username, password) {
+  authenticate(protocol, subdomain, username, password) {
     return new RSVP.Promise((resolve, reject) => {
-      this.callLogin(username, password).then((response) => {
+      this.callLogin(protocol, subdomain, username, password).then((response) => {
         run(() => {
           resolve({
+            protocol,
+            subdomain,
             username,
             password,
             id: response['id'],
@@ -38,8 +40,8 @@ export default Base.extend({
   // invalidate(data) {
   // },
 
-  callLogin(username, password) {
-    let url = 'https://sitbacksolutions.unfuddle.com/api/v1/account';
+  callLogin(protocol, subdomain, username, password) {
+    let url = `${protocol}://${subdomain}.unfuddle.com/api/v1/account`;
     let options = {
       url,
       type: 'GET',

@@ -1,4 +1,8 @@
 <form {{action 'authenticate' on='submit'}}>
+  <label for="username">Protocol</label>
+  {{input id='protocol' placeholder='Protocol (http/https)' value=protocol}}
+  <label for="username">Subdomain</label>
+  {{input id='subdomain' placeholder='Subdomain (e.g. mysubdomain)' value=subdomain}}
   <label for="username">Login</label>
   {{input id='username' placeholder='Enter Login' value=username}}
   <label for="password">Password</label>
