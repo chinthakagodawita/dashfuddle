@@ -7,6 +7,7 @@ export default Base.extend({
 
   authenticate(username, password) {
     console.debug('authenticator args', ...arguments);
+    return this._super(...arguments);
   },
 
   invalidate(data) {
