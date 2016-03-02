@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('unfuddle-project', 'Unit | Serializer | unfuddle project', {
   // Specify the other units that are required for this test.
-  needs: ['serializer:unfuddle-project']
+  needs: ['serializer:unfuddle-project', 'model:unfuddle-status', 'serializer:unfuddle-project']
 });
 
 // Replace this with your real tests.
