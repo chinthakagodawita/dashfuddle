@@ -4,17 +4,20 @@ import Ember from 'ember';
 const { inject, computed } = Ember;
 
 export default DS.RESTAdapter.extend({
-  session: inject.service('session'),
-  protocol: computed.alias('session.protocol'),
-  subdomain: computed.alias('session.subdomain'),
   namespace: 'api/v1',
-  host: computed('protocol', 'subdomain', () => {
-    let protocol = this.get('protocol');
-    let subdomain = this.get('subdomain');
+  session: inject.service('session'),
+  sessionData: computed.alias('session.data.authenticated'),
+  host: computed('sessionData.protocol', 'sessionData.subdomain', function() {
+    let protocol = this.get('sessionData.protocol');
+    let subdomain = this.get('sessionData.subdomain');
     return `${protocol}://${subdomain}.unfuddle.com`;
-  }),
-  headers: {
-    Authorization: `Basic ` + btoa('username:password'),
-    Accept: 'application/json'
-  }
+  }).volatile(),
+  headers: computed('sessionData..username', 'sessionData..password', function() {
+    let user = this.get('sessionData.username');
+    let pass = this.get('sessionData.password');
+    return {
+        Authorization: `Basic ` + btoa(`${user}:${pass}`),
+        Accept: 'application/json'
+    };
+  }).volatile()
 });
