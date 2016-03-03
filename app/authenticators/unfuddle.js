@@ -27,7 +27,8 @@ export default Base.extend({
             password,
             id: response['id'],
             domainTitle: response['title'],
-            accessKey: response['access_key']
+            accessKey: response['access_key'],
+            host: `${protocol}://${subdomain}.unfuddle.com`
           });
         });
       }, (/*xhr*/) => {

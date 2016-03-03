@@ -3,4 +3,12 @@
 {{else}}
   {{#link-to 'login'}}Login{{/link-to}}
 {{/if}}
+
+<h2>Projects</h2>
+<ul>
+  {{#each model as |project|}}
+    <li>{{project.title}}</li>
+  {{/each}}
+</ul>
+
 {{outlet}}
