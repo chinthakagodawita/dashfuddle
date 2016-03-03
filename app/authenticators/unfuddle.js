@@ -5,12 +5,10 @@ const { RSVP, $, isEmpty, run } = Ember;
 
 export default Base.extend({
   restore(data) {
-    console.warn('restore called: ', data);
     return new RSVP.Promise((resolve, reject) => {
       if (isEmpty(data.username) || isEmpty(data.password) || isEmpty(data.protocol) || isEmpty(data.subdomain)) {
         reject();
-      }
-      else {
+      } else {
         resolve(data);
       }
     });
@@ -25,9 +23,9 @@ export default Base.extend({
             subdomain,
             username,
             password,
-            id: response['id'],
-            domainTitle: response['title'],
-            accessKey: response['access_key'],
+            id: response.id,
+            domainTitle: response.title,
+            accessKey: response['access_key'], // jscs:disable requireDotNotation
             host: `${protocol}://${subdomain}.unfuddle.com`
           });
         });
