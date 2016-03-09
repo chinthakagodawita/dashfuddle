@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('unfuddle-ticket', 'Unit | Model | unfuddle ticket', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:unfuddle-project']
 });
 
 test('it exists', function(assert) {

@@ -10,6 +10,12 @@
 {{#power-select options=model selected=selectedProject onchange=(action "selectProject") as |project|}}
   {{project.title}}
 {{/power-select}}
+
+{{#if selectedProject}}
+  {{#power-select options=tickets selected=selectedTicket onchange=(action "selectTicket") as |ticket|}}
+    {{ticket.description}}
+  {{/power-select}}
+{{/if}}
 {{!--<ul>
   {{#each model as |project|}}
     <li>{{project.title}}</li>

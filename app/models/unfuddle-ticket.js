@@ -1,6 +1,8 @@
 import DS from 'ember-data';
 
-const { Model } = DS;
+const { Model, attr, belongsTo } = DS;
 
 export default Model.extend({
+  projectId: belongsTo('unfuddleProject', { inverse: 'tickets' }),
+  description: attr('string')
 });
